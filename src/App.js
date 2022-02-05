@@ -1,23 +1,52 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import Navigation from './Shared/Navigation/Navigation';
+import Home from './Pages/Home/Home/Home';
+import Login from './Pages/Authentication/Login/Login';
+import Register from './Pages/Authentication/Register/Register';
+import Footer from './Shared/Footer/Footer';
+import AllPlaces from './Pages/AllPlaces/AllPlaces';
+import ContactUs from './Shared/ContactUs/ContactUs';
+import AuthProvider from './Contexts/AuthProvider/AuthProvider';
+import Booking from './Pages/Booking/Booking';
+import Dashboard from './Pages/Dashboard/Dashboard';
+import PrivateRoute from './Pages/Authentication/PrivateRoute/PrivateRoute';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <AuthProvider>
+     <BrowserRouter>
+     <Navigation></Navigation>
+     <Switch>
+       <Route exact path='/'>
+         <Home></Home>
+       </Route>
+       <Route path='/home'>
+         <Home></Home>
+       </Route>
+       <Route path='/allPlaces'>
+         <AllPlaces></AllPlaces>
+       </Route>
+       <PrivateRoute path='/dashboard'>
+         <Dashboard></Dashboard>
+       </PrivateRoute>
+       <PrivateRoute path='/booking/:id'>
+         <Booking></Booking>
+       </PrivateRoute>
+       <Route path='/contactUs'>
+         <ContactUs></ContactUs>
+       </Route>
+       <Route path='/login'>
+         <Login></Login>
+       </Route>
+       <Route path='/register'>
+         <Register></Register>
+       </Route>
+     </Switch>
+     <Footer></Footer>
+     </BrowserRouter>
+     </AuthProvider>
     </div>
   );
 }
