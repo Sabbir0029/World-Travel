@@ -13,3 +13,6 @@
 .AllPlaces{
     margin-top: 100px;
 }
+.navigation{
+    display: flex;
+}

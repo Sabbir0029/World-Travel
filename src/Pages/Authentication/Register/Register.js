@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Alert, Button, Spinner } from 'react-bootstrap';
+import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import useAuth from '../../../Hooks/useAuth';
 
 const Register = () => {
     const [loginData, setLoginDate] = useState({});
     const {user,register,isLoading,error} = useAuth();
-    const handelOnChange = e =>{
+    const history = useHistory();
+    const handelOnBlur = e =>{
         const field = e.target.name;
         const value = e.target.value;
         const newData = {...loginData}
@@ -18,7 +20,7 @@ const Register = () => {
             alert('your password did not match')
             return
         }
-        register(loginData.email, loginData.password)
+        register(loginData.email, loginData.password, history)
         alert('yes submit')
         e.preventDefault();
     }
@@ -38,21 +40,21 @@ const Register = () => {
                 placeholder="Your Email"
                 name='email'
                 type='email'
-                onChange={handelOnChange}
+                onBlur={handelOnBlur}
                 ></input> <br></br>
                 <input 
                 className='w-25 m-3 text-danger'
                 placeholder="Your Password"
                 name='password'
                 type='password'
-                onChange={handelOnChange}
+                onBlur={handelOnBlur}
                 ></input><br></br>
                 <input 
                 className='w-25 mb-3 text-danger'
                 placeholder="Conform Password"
                 name='password2'
                 type='password'
-                onChange={handelOnChange}
+                onBlur={handelOnBlur}
                 ></input><br></br>
                 <Button type='submit' className='w-25 mb-3 bg-danger border-danger fw-bold fst-italic'>Register</Button>
             </form>}
