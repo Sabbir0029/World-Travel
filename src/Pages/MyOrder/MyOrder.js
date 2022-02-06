@@ -7,7 +7,7 @@ const MyOrder = () => {
     const [orders,setOrders] = useState([])
 
   useEffect(()=>{
-    const url = `http://localhost:5000/booking?email=${user.email}`;
+    const url = `https://polar-sea-01995.herokuapp.com/booking?email=${user.email}`;
     fetch(url)
     .then(res => res.json())
     .then(data => {
@@ -20,7 +20,7 @@ const MyOrder = () => {
   const cancelBtn = id => {
     const confirm = window.confirm('Are you sure wanna remove this item?')
     if (confirm) {
-      fetch(`http://localhost:5000/booking/${id}`,{
+      fetch(`https://polar-sea-01995.herokuapp.com/booking/${id}`,{
         method:'DELETE'
     })
     .then(res => res.json())

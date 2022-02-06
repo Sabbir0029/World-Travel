@@ -10,7 +10,7 @@ const Booking = () => {
     const [bookingSuccessfully, setBookingSuccessfully] = useState(false);
 
     useEffect(()=>{
-        const url = `http://localhost:5000/allPlaces/${id}`;
+        const url = `https://polar-sea-01995.herokuapp.com/allPlaces/${id}`;
         fetch(url)
         .then(res => res.json())
         .then(data => setBooking(data))
@@ -29,7 +29,7 @@ const Booking = () => {
       name,
       price
     }
-    fetch('http://localhost:5000/booking',{
+    fetch('https://polar-sea-01995.herokuapp.com/booking',{
       method:'POST',
       headers:{
         'content-type':'application/json'

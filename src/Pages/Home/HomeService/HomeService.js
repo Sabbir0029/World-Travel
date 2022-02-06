@@ -6,7 +6,7 @@ const HomeService = () => {
       const [Places, setPlaces] = useState([])
 
       useEffect(()=>{
-        fetch('http://localhost:5000/allPlaces')
+        fetch('https://polar-sea-01995.herokuapp.com/allPlaces')
         .then(res => res.json())
         .then(data => setPlaces(data))
       },[])
